@@ -1,13 +1,13 @@
 load('mnist_all.mat')
 %training/test data
-traina = double(train3(1:10,:));
-trainb = double(train8(1:10,:));
+traina = double(train3(1:100,:));
+trainb = double(train8(1:100,:));
 testa = double(test3);
 testb = double(test8);
 %regularization parameter
-lambda = linspace(0.5, 1.5, 5);
+lambda = linspace(0.5, 1.5, 10);
 %gamma range
-gamma = linspace(3e-6, 4e-6, 25);
+gamma = linspace(2e-6, 3.2e-6, 30);
 
 %compute x, y, and sample solution 
 X = [traina; trainb];

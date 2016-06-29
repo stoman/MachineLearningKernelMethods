@@ -5,9 +5,9 @@ trainb = double(train8(1:1000,:));
 testa = double(test3);
 testb = double(test8);
 %regularization parameter
-lambda = 0;
+lambda = 1;
 %kernel function and its parameters
-gamma = 0.00001;
+gamma = 2.5e-6;
 %K = @(x,z) x*z';
 K = @(x,z) exp(-gamma.*(bsxfun(@plus, sum(x.^2,2), sum(z.^2,2)') - 2*(x*z')));
 
