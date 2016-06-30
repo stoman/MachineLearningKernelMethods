@@ -1,3 +1,10 @@
+%This file contains some approaches for the classification problem using
+%the mnist data set. There are four methods implemented: gradient descent
+%using fminunc, gradient descent with manual steps, inverting the primal
+%matrix and inverting the dual matrix. The latter ones use the default
+%euclidean kernel.
+%Author: Stefan Toman (toman@tum.de)
+
 %load training data and test data (one object per row)
 load('mnist_all.mat')
 traina = double(train3);

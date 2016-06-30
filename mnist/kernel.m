@@ -1,14 +1,23 @@
+%This file applies kernel methods to the mnist data set. Two digits are
+%separated using different kernels and regularization parameters. Use the
+%file optparameters.m to find parameters with good results.
+%Author: Stefan Toman (toman@tum.de)
+
+%load data
 load('mnist_all.mat')
 %training/test data
 traina = double(train3(1:1000,:));
 trainb = double(train8(1:1000,:));
 testa = double(test3);
 testb = double(test8);
+
 %regularization parameter
 lambda = 1;
 %kernel function and its parameters
-gamma = 2.5e-6;
+%Euclidean kernel
 %K = @(x,z) x*z';
+%Gaussian kernel
+gamma = 2.5e-6;
 K = @(x,z) exp(-gamma.*(bsxfun(@plus, sum(x.^2,2), sum(z.^2,2)') - 2*(x*z')));
 
 %compute x, y, and sample solution 
@@ -23,4 +32,5 @@ a = (pdist2(X, X, K) + lambda*eye(size(X, 1)))\Y;
 predict = @(Xt) (pdist2(Xt, X, K) * a);
 predictions = predict(Xt);
 
+%print results
 fprintf('works for %d of %d inputs\n', sum(Yt - sign(predictions) == 0), size(Xt, 1));

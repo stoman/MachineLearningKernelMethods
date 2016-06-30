@@ -1,3 +1,14 @@
+%This script implements kernel methods for the supervised classification
+%problem. There are several data files, regularization parameters and
+%kernel functions to choose from. A visualization is plotted for one- or
+%two-dimensional data. Two data sets are given in the variable X, the
+%corresponding labels are given in Y and are identified by +1 and -1. Test
+%data is given in Xt and Yt, respectively. We solve the dual problem for
+%the prediction function. The method used here is not suited for huge input
+%sizes and requires time O(N³) and space O(N²) where N is the size of the
+%training data set.
+%Author: Stefan Toman (toman@tum.de)
+
 %name of the data file to load
 file = 'twoD_small_veryhard.mat';
 %regularization parameter
