@@ -4,6 +4,7 @@
 %used: a naive estimation and a Gaussian estimator. To get a relative error
 %of 10% at 0 for the Gussian estimator we need approximately N=100 for d=1,
 %N=300 for d=2, and N=500.000 for d=5.
+%Author: Stefan Toman (toman@tum.de)
 
 %number of samples
 N = 100;

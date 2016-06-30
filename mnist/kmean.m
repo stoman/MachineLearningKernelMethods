@@ -2,6 +2,7 @@
 %To do this we try to fit two centroids in the training and test data to
 %separate the test data. This approach is quite simple and should be much
 %worse than other methods.
+%Author: Stefan Toman (toman@tum.de)
 
 %load mnist data
 load('mnist_all.mat');

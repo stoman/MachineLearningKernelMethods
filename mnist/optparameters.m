@@ -2,6 +2,8 @@
 %Different values for lambda and gamma are tested for a few training data
 %points. We then cross-validate the resulting functions against the
 %remaining test data.
+%Author: Stefan Toman (toman@tum.de)
+
 load('mnist_all.mat');
 
 %training/test data
