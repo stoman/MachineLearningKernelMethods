@@ -9,28 +9,20 @@ load('mnist_all.mat');
 
 %training/test data
 trainingsize = 50;
-traina = double(train3(1:trainingsize,:));
-trainb = double(train8(1:trainingsize,:));
-testa = double(train3(trainingsize+1:end,:));
-testb = double(train8(trainingsize+1:end,:));
+[X, Y] = testdataset(train3(1:trainingsize,:), train8(1:trainingsize,:));
+[Xt, Yt] = testdataset(train3(trainingsize+1:end,:), train8(trainingsize+1:end,:));
 
 %regularization parameter range
 lambda = logspace(0, 2, 6);
 %gamma range
 gamma = linspace(2e-6, 5e-6, 11);
 
-%compute x, y, and sample solution 
-X = [traina; trainb];
-Y = [ones(size(traina,1),1)*-1; ones(size(trainb,1),1)*1];
-Xt = [testa; testb];
-Yt = [ones(size(testa,1),1)*-1; ones(size(testb,1),1)*1];
-
 %define a function that should be plotted
 map = @(lambda, gamma) predictionquality( ...
     [traina; trainb], ...
     [ones(size(traina,1),1)*-1; ones(size(trainb,1),1)*1], ...
     lambda, ...
-    @(x,z) exp(-gamma.*(bsxfun(@plus, sum(x.^2,2), sum(z.^2,2)') - 2*(x*z'))), ...
+    gaussiankernel(gamma), ...
     [testa; testb], ...
     [ones(size(testa,1),1)*-1; ones(size(testb,1),1)*1] ...
 )./(size(testa,1)+size(testb,1));

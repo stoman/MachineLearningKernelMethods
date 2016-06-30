@@ -4,12 +4,11 @@
 %Author: Stefan Toman (toman@tum.de)
 
 %load data
-load('mnist_all.mat')
+load('mnist_all.mat');
+
 %training/test data
-traina = double(train3(1:1000,:));
-trainb = double(train8(1:1000,:));
-testa = double(test3);
-testb = double(test8);
+[X, Y] = testdataset(train3(1:1000,:), train8(1:1000,:));
+[Xt, Yt] = testdataset(test3, test8);
 
 %regularization parameter
 lambda = 1;
@@ -17,19 +16,10 @@ lambda = 1;
 %Euclidean kernel
 %K = @(x,z) x*z';
 %Gaussian kernel
-gamma = 2.5e-6;
-K = @(x,z) exp(-gamma.*(bsxfun(@plus, sum(x.^2,2), sum(z.^2,2)') - 2*(x*z')));
-
-%compute x, y, and sample solution 
-X = [traina; trainb];
-Y = [ones(size(traina,1),1)*-1; ones(size(trainb,1),1)*1];
-Xt = [testa; testb];
-Yt = [ones(size(testa,1),1)*-1; ones(size(testb,1),1)*1];
+K = gaussiankernel(2.5e-6);
 
 %solve the regular dual linear regsression problem with the given kernel
-a = (pdist2(X, X, K) + lambda*eye(size(X, 1)))\Y;
-%results can be predicted by multiplying with the vector a
-predict = @(Xt) (pdist2(Xt, X, K) * a);
+predict = funpredict(X, Y, lambda, K);
 predictions = predict(Xt);
 
 %print results

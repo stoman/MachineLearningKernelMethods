@@ -41,18 +41,18 @@ ty = ty(perm);
 %gradient descent (fminunc)
 L = @(w) gradient(w, x, y);
 w = fminunc(L, zeros(size(x,2),1), optimoptions('fminunc','Display','off','Algorithm','quasi-newton','SpecifyObjectiveGradient',true));
-printResults(tx, ty, w, 'fminunc', a, b);
+printresults(tx, ty, w, 'fminunc', a, b);
 
 %manual gradient descent
 w = zeros(size(x,2),1);
 for i = 1:20
     w = w - 1e-7/size(x,1)*x'*(x*w-y);
 end
-printResults(tx, ty, w, 'manual gradient descent', a, b);
+printresults(tx, ty, w, 'manual gradient descent', a, b);
 
 %solve (x'*x)*w = x'*y
 w = pinv(x'*x)*(x'*y);
-printResults(tx, ty, w, 'inverting x''*x', a, b);
+printresults(tx, ty, w, 'inverting x''*x', a, b);
 
 %drop some training data to make the running time acceptable
 maxsize = 1000;
@@ -64,4 +64,4 @@ end
 %solve (x*x')*c = y
 c = pinv(x*x')*y;
 w = x'*c;
-printResults(tx, ty, w, sprintf('inverting x*x'', truncated to %d rows', maxsize), a, b);
+printresults(tx, ty, w, sprintf('inverting x*x'', truncated to %d rows', maxsize), a, b);
