@@ -6,7 +6,7 @@
 %Author: Stefan Toman (toman@tum.de)
 
 %load training data and test data (one object per row)
-load('mnist_all.mat')
+load('../data/mnist_all.mat')
 traina = double(train3);
 trainb = double(train8);
 testa = double(test3);
@@ -37,6 +37,9 @@ y = y(perm);
 perm = randperm(size(tx,1));
 tx = tx(perm,:);
 ty = ty(perm);
+
+%load functions
+addpath('../functions');
 
 %gradient descent (fminunc)
 L = @(w) gradient(w, x, y);

@@ -1,7 +1,7 @@
 %This function evaluates the quality of predicted results on a test set as
-%used in learning.m. x and y are the test data, w are the parameters of the
-%prediction function, name is the name of the method in use and a and b are
-%the labels of the two classes of objects.
+%used in mnist/learning.m. x and y are the test data, w are the parameters
+%of the prediction function, name is the name of the method in use and a
+%and b are the labels of the two classes of objects.
 %Author: Stefan Toman (toman@tum.de)
 function printresults(x, y, w, name, a, b)
     yy = x*w;

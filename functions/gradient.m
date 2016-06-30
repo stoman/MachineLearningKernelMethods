@@ -1,5 +1,5 @@
-%A gradient computation used for the fminunc function in learning.m for the
-%gradient descent.
+%A gradient computation used for the fminunc function in mnist/learning.m
+%for the gradient descent.
 %Author: Stefan Toman (toman@tum.de)
 function [L, grad] = gradient(w, x, y)
     L = 1/2*norm(x*w-y);

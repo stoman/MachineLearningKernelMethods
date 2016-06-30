@@ -5,7 +5,7 @@
 %Author: Stefan Toman (toman@tum.de)
 
 %load mnist data
-load('mnist_all.mat');
+load('../data/mnist_all.mat');
 
 %training/test data
 traina = double(train7);

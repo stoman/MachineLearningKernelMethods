@@ -5,7 +5,10 @@
 %the hardware.
 %Author: Stefan Toman (toman@tum.de)
 
-load('mnist_all.mat');
+load('../data/mnist_all.mat');
+
+%load functions
+addpath('../functions');
 
 %training/test data
 trainingsize = 50;
@@ -18,14 +21,7 @@ lambda = logspace(0, 2, 6);
 gamma = linspace(2e-6, 5e-6, 11);
 
 %define a function that should be plotted
-map = @(lambda, gamma) predictionquality( ...
-    [traina; trainb], ...
-    [ones(size(traina,1),1)*-1; ones(size(trainb,1),1)*1], ...
-    lambda, ...
-    gaussiankernel(gamma), ...
-    [testa; testb], ...
-    [ones(size(testa,1),1)*-1; ones(size(testb,1),1)*1] ...
-)./(size(testa,1)+size(testb,1));
+map = @(lambda, gamma) predictionquality(X, Y, lambda, gaussiankernel(gamma), Xt, Yt)./(size(Xt,1));
 
 %plot data
 [xlambda, xgamma] = meshgrid(lambda, gamma);

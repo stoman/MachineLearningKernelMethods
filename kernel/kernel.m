@@ -9,21 +9,22 @@
 %training data set.
 %Author: Stefan Toman (toman@tum.de)
 
+%load functions
+addpath('../functions');
+
 %name of the data file to load
-file = 'twoD_small_veryhard.mat';
+file = '../data/twoD_small_veryhard.mat';
 %regularization parameter
 lambda = 1;
-%kernel function and its parameters
-gamma = 1;
-%K = @(x,z) x*z';
-K = @(x,z) exp(-gamma.*(bsxfun(@plus, sum(x.^2,2), sum(z.^2,2)') - 2*(x*z')));
+%kernel function
+%K = defaultkernel();
+K = gaussiankernel(1);
 
 %load the training and test data
 load(file);
+
 %solve the regular dual linear regsression problem with the given kernel
-a = (pdist2(X, X, K) + lambda*eye(size(X, 1)))\Y;
-%results can be predicted by multiplying with the vector a
-predict = @(Xt) (pdist2(Xt, X, K) * a);
+predict = funpredict(X, Y, lambda, K);
 predictions = predict(Xt);
 
 %visualize outputs

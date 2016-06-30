@@ -4,7 +4,10 @@
 %Author: Stefan Toman (toman@tum.de)
 
 %load data
-load('mnist_all.mat');
+load('../data/mnist_all.mat');
+
+%load functions
+addpath('../functions');
 
 %training/test data
 [X, Y] = testdataset(train3(1:1000,:), train8(1:1000,:));
@@ -13,8 +16,8 @@ load('mnist_all.mat');
 %regularization parameter
 lambda = 1;
 %kernel function and its parameters
-%Euclidean kernel
-%K = @(x,z) x*z';
+%default kernel
+%K = defaultkernel();
 %Gaussian kernel
 K = gaussiankernel(2.5e-6);
 

@@ -11,16 +11,19 @@ N = 100;
 %dimension
 d = 2;
 
+%load functions
+addpath('../functions');
+
 %sample data
 X = randn(N, d);
 
 %kernel function and h value
 %naive estimator
-Knaive = @(r) (sum(r.^2,2)<1)./2;
-hnaive= 5e-1;
+Knaive = naivekernel(1, 1);
+hnaive= 5e-1;%TODO: compute this depending on N
 
 %gaussian
-Kgauss = @(r) (2*pi)^(-d/2)*exp((-0.5).*sum(r.^2,2));
+Kgauss = gaussiankernel(0.5, 1);
 hgauss = (4/(d+2))^(1/(d+4))*N^(-1/(d+4));
 
 %density functions
