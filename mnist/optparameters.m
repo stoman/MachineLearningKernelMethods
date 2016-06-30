@@ -1,7 +1,8 @@
 %In this file we try to find good parameters for the kernel.m file.
 %Different values for lambda and gamma are tested for a few training data
 %points. We then cross-validate the resulting functions against the
-%remaining test data.
+%remaining test data. Executing this file may take some time depending on
+%the hardware.
 %Author: Stefan Toman (toman@tum.de)
 
 load('mnist_all.mat');
@@ -14,9 +15,9 @@ testa = double(train3(trainingsize+1:end,:));
 testb = double(train8(trainingsize+1:end,:));
 
 %regularization parameter range
-lambda = logspace(1e-8, 50, 5);
+lambda = logspace(0, 2, 6);
 %gamma range
-gamma = logspace(1e-6, 1e-5, 10);
+gamma = linspace(2e-6, 5e-6, 11);
 
 %compute x, y, and sample solution 
 X = [traina; trainb];
