@@ -1,13 +1,20 @@
-load('mnist_all.mat')
+%In this file we try to find good parameters for the kernel.m file.
+%Different values for lambda and gamma are tested for a few training data
+%points. We then cross-validate the resulting functions against the
+%remaining test data.
+load('mnist_all.mat');
+
 %training/test data
-traina = double(train3(1:100,:));
-trainb = double(train8(1:100,:));
-testa = double(test3);
-testb = double(test8);
-%regularization parameter
-lambda = linspace(0.5, 1.5, 10);
+trainingsize = 50;
+traina = double(train3(1:trainingsize,:));
+trainb = double(train8(1:trainingsize,:));
+testa = double(train3(trainingsize+1:end,:));
+testb = double(train8(trainingsize+1:end,:));
+
+%regularization parameter range
+lambda = logspace(1e-8, 50, 5);
 %gamma range
-gamma = linspace(2e-6, 3.2e-6, 30);
+gamma = logspace(1e-6, 1e-5, 10);
 
 %compute x, y, and sample solution 
 X = [traina; trainb];
@@ -15,7 +22,7 @@ Y = [ones(size(traina,1),1)*-1; ones(size(trainb,1),1)*1];
 Xt = [testa; testb];
 Yt = [ones(size(testa,1),1)*-1; ones(size(testb,1),1)*1];
 
-%
+%define a function that should be plotted
 map = @(lambda, gamma) predictionquality( ...
     [traina; trainb], ...
     [ones(size(traina,1),1)*-1; ones(size(trainb,1),1)*1], ...
@@ -25,6 +32,7 @@ map = @(lambda, gamma) predictionquality( ...
     [ones(size(testa,1),1)*-1; ones(size(testb,1),1)*1] ...
 )./(size(testa,1)+size(testb,1));
 
+%plot data
 [xlambda, xgamma] = meshgrid(lambda, gamma);
 quality = arrayfun(map, xlambda, xgamma);
 contourf(xlambda, xgamma, quality);
