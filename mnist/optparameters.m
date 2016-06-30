@@ -21,7 +21,7 @@ lambda = logspace(0, 2, 6);
 gamma = linspace(2e-6, 5e-6, 11);
 
 %define a function that should be plotted
-map = @(lambda, gamma) predictionquality(X, Y, lambda, gaussiankernel(gamma), Xt, Yt)./(size(Xt,1));
+map = @(lambda, gamma) predictionquality(funpredict(X, Y, lambda, gaussiankernel(gamma)), Xt, Yt)./(size(Xt,1));
 
 %plot data
 [xlambda, xgamma] = meshgrid(lambda, gamma);
