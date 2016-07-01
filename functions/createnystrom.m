@@ -6,17 +6,15 @@
 %default value is false. Enabling this option makes this function compute
 %the actual Gram matrix which is very costly. Without the debug flag the
 %full Gram matrix will never be computed. The Gram matrix is approximated
-%by A*B.
+%by A*B. The sampling is done by taking the first rows of X. Therefore, you
+%need to shuffle it before giving it to this function. This function dies
+%not shuffle the data since the labels need to be adjusted accordingly.
 %Author: Stefan Toman (toman@tum.de)
 function [A, B] = createnystrom(X, K, samplesize, debug)
     %set debug variable
     if nargin < 4
         debug = false;
     end
-
-    %shuffle training data
-    perm = randperm(size(X,1));
-    X = X(perm,:);
 
     %select submatrices
     X1 = X(1:samplesize,:);

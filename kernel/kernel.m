@@ -36,8 +36,8 @@ if size(X,2) == 1
     %create some plots
     scatter(subplot(3,2,1),X,zeros(size(X)),25,Y,'filled'); title('Training Data');
     scatter(subplot(3,2,2),Xt,zeros(size(Xt)),25,Yt,'filled'); title('Test Data');
-    stem(subplot(3,2,3), x, z); title('Prediction Function');
-    scatter(subplot(3,2,4),Xt,zeros(size(Xt)),25,predictions,'filled'); title('Predictions');
+    stem(subplot(3,2,3), x, z); title('Prediction Function'); colorbar();
+    scatter(subplot(3,2,4),Xt,zeros(size(Xt)),25,predictions,'filled'); title('Predictions'); colorbar();
     ax = subplot(3,2,5);
     text(0, 0.9, sprintf('works for %d of %d inputs\n', sum(Yt - sign(predictions) == 0), size(Xt, 1)));
     text(0, 0.6, sprintf('%d training inputs\n', size(X,1)));
@@ -54,8 +54,8 @@ elseif size(X,2) == 2
     %create some plots
     scatter(subplot(3,2,1),X(:,1),X(:,2),25,Y,'filled'); title('Training Data');
     scatter(subplot(3,2,2),Xt(:,1),Xt(:,2),25,Yt,'filled'); title('Test Data');
-    contourf(subplot(3,2,3), x, y, z); title('Prediction Function');
-    scatter(subplot(3,2,4),Xt(:,1),Xt(:,2),25,predictions,'filled'); title('Predictions');
+    contourf(subplot(3,2,3), x, y, z); title('Prediction Function'); colorbar();
+    scatter(subplot(3,2,4),Xt(:,1),Xt(:,2),25,predictions,'filled'); title('Predictions'); colorbar();
     ax = subplot(3,2,5);
     text(0, 0.9, sprintf('works for %d of %d inputs\n', sum(Yt - sign(predictions) == 0), size(Xt, 1)));
     text(0, 0.6, sprintf('%d training inputs\n', size(X,1)));
