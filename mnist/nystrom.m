@@ -10,8 +10,8 @@ load('../data/mnist_all.mat');
 addpath('../functions');
 
 %training/test data
-[X, Y] = testdataset(train3(1:2000,:), train8(1:2000,:));
-[Xt, Yt] = testdataset(test3, test8);
+[X, Y] = testdataset(train7, train1);
+[Xt, Yt] = testdataset(test7, test1);
 
 %sample size
 samplesize = 500;
@@ -20,11 +20,11 @@ samplesize = 500;
 %default kernel
 %K = defaultkernel();
 %Gaussian kernel
-h = 200;
+h = 500;
 gamma = 1;
-K = gaussiankernel(gamma/2/h^2);
+K = gaussiankernel(gamma/h^2,2,true);
 
-%solve the regular dual linear regsression problem with the given kernel
+%solve the regular dual linear regression problem with the given kernel
 predict = funpredictnystrom(X, Y, K, samplesize);
 predictions = predict(Xt);
 
