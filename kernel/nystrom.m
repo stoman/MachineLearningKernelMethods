@@ -3,10 +3,10 @@
 %Author: Stefan Toman (toman@tum.de)
 
 %input file
-file = '../data/twoD_small_easy.mat';
+file = '../data/twoD_large_veryhard.mat';
 %size of the new smaller matrix (should be a constant multiple of the rank
 %of the Gram matrix)
-samplesize = 500;
+samplesize = 25;
 
 %load functions
 addpath('../functions');

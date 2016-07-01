@@ -15,11 +15,13 @@ function predict = funpredictnystrom(X, Y, K, samplesize)
     X = X(perm,:);
     Y = Y(perm);
 
-    %compute the decomposition of the Gram amtrix using the Nyström method
-    [A, B] = createnystrom(X, K, samplesize);
-    
+    %compute the decomposition of the Gram matrix using the Nyström method
+    F = createnystrom(X, K, samplesize);
+
     %solve the regular dual linear regression problem with the given kernel
-    a = B\(A\Y);
+    pinvF = pinv(F);
+    a = pinvF'*(pinvF*Y);
+    
     %results can be predicted by multiplying with the vector a
     predict = @(Xt) (pdist2(Xt, X, K) * a);
 end

@@ -13,12 +13,13 @@
 addpath('../functions');
 
 %name of the data file to load
-file = '../data/twoD_small_veryhard.mat';
+file = '../data/twoD_small_easy.mat';
 %regularization parameter
-lambda = 1;
+lambda = 0;
 %kernel function
 %K = defaultkernel();
-K = gaussiankernel(1);
+gamma = 1;
+K = gaussiankernel(gamma);
 
 %load the training and test data
 load(file);
