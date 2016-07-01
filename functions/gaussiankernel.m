@@ -12,7 +12,7 @@ function K = gaussiankernel(gamma, nrinputs)
     
     %create function
     if nrinputs == 1
-        K = @(x) (2*pi)^(-size(x,2)/2)*exp(-gamma.*sum(x.^2,2));
+        K = @(x) (2*pi)^(-size(x,2)/2)*exp(-gamma/2.*sum(x.^2,2));
     elseif nrinputs == 2
         K1 = gaussiankernel(gamma, 1);
         K = @(x,z) K1(bsxfun(@minus, x, z));

@@ -3,18 +3,18 @@
 %Author: Stefan Toman (toman@tum.de)
 
 %input file
-file = '../data/twoD_large_easy.mat';
+file = '../data/twoD_small_easy.mat';
 %size of the new smaller matrix (should be a constant multiple of the rank
 %of the Gram matrix)
-samplesize = 50;
+samplesize = 500;
 
 %load functions
 addpath('../functions');
 
 %kernel
-h = 5;
+h = 1;
 gamma = 1;
-K = gaussiankernel(gamma/2/h^2,2);
+K = gaussiankernel(gamma/h^2,2);
 
 %load data file
 load(file);

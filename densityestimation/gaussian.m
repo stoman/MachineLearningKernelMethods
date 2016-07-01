@@ -7,7 +7,7 @@
 %Author: Stefan Toman (toman@tum.de)
 
 %number of samples
-N = 100;
+N = 1000;
 %dimension
 d = 2;
 
@@ -23,7 +23,7 @@ Knaive = naivekernel(1, 1);
 hnaive= 5e-1;%TODO: compute this depending on N
 
 %gaussian
-Kgauss = gaussiankernel(0.5, 1);
+Kgauss = gaussiankernel(1, 1);
 hgauss = (4/(d+2))^(1/(d+4))*N^(-1/(d+4));
 
 %density functions
